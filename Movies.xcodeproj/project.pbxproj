@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA1420401DAF4E8100FB5428 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203E1DAF4E8100FB5428 /* Alamofire.framework */; };
+		EA1420411DAF4E8100FB5428 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */; };
 		EAA74B311DAB45F20064B4B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */; };
-		EAA74B331DAB45F20064B4B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B321DAB45F20064B4B9 /* ViewController.swift */; };
 		EAA74B361DAB45F20064B4B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B341DAB45F20064B4B9 /* Main.storyboard */; };
 		EAA74B381DAB45F20064B4B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B371DAB45F20064B4B9 /* Assets.xcassets */; };
 		EAA74B3B1DAB45F20064B4B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B391DAB45F20064B4B9 /* LaunchScreen.storyboard */; };
+		EAA74B481DAD305D0064B4B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B471DAD305D0064B4B9 /* HomeViewController.swift */; };
+		EAA74B4C1DAD3F770064B4B9 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B4B1DAD3F770064B4B9 /* MovieListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA14203E1DAF4E8100FB5428 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		EAA74B2D1DAB45F20064B4B9 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EAA74B321DAB45F20064B4B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EAA74B351DAB45F20064B4B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAA74B371DAB45F20064B4B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAA74B3A1DAB45F20064B4B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAA74B3C1DAB45F20064B4B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAA74B471DAD305D0064B4B9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EAA74B4B1DAD3F770064B4B9 /* MovieListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1420401DAF4E8100FB5428 /* Alamofire.framework in Frameworks */,
+				EA1420411DAF4E8100FB5428 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA14203D1DAF4E8000FB5428 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA14203E1DAF4E8100FB5428 /* Alamofire.framework */,
+				EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EAA74B241DAB45F20064B4B9 = {
 			isa = PBXGroup;
 			children = (
 				EAA74B2F1DAB45F20064B4B9 /* Movies */,
 				EAA74B2E1DAB45F20064B4B9 /* Products */,
+				EA14203D1DAF4E8000FB5428 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +73,30 @@
 			isa = PBXGroup;
 			children = (
 				EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */,
-				EAA74B321DAB45F20064B4B9 /* ViewController.swift */,
+				EAA74B451DAD304A0064B4B9 /* Scenes */,
 				EAA74B341DAB45F20064B4B9 /* Main.storyboard */,
 				EAA74B371DAB45F20064B4B9 /* Assets.xcassets */,
 				EAA74B391DAB45F20064B4B9 /* LaunchScreen.storyboard */,
 				EAA74B3C1DAB45F20064B4B9 /* Info.plist */,
 			);
 			path = Movies;
+			sourceTree = "<group>";
+		};
+		EAA74B451DAD304A0064B4B9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				EAA74B461DAD304A0064B4B9 /* Home page */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		EAA74B461DAD304A0064B4B9 /* Home page */ = {
+			isa = PBXGroup;
+			children = (
+				EAA74B471DAD305D0064B4B9 /* HomeViewController.swift */,
+				EAA74B4B1DAD3F770064B4B9 /* MovieListCell.swift */,
+			);
+			path = "Home page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +109,7 @@
 				EAA74B291DAB45F20064B4B9 /* Sources */,
 				EAA74B2A1DAB45F20064B4B9 /* Frameworks */,
 				EAA74B2B1DAB45F20064B4B9 /* Resources */,
+				EA1420421DAF4E9500FB5428 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -132,13 +168,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EA1420421DAF4E9500FB5428 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EAA74B291DAB45F20064B4B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAA74B331DAB45F20064B4B9 /* ViewController.swift in Sources */,
 				EAA74B311DAB45F20064B4B9 /* AppDelegate.swift in Sources */,
+				EAA74B4C1DAD3F770064B4B9 /* MovieListCell.swift in Sources */,
+				EAA74B481DAD305D0064B4B9 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +315,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XB4NTLAF6H;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Movies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.vinaynair.Movies;
@@ -273,6 +332,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XB4NTLAF6H;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Movies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.vinaynair.Movies;
@@ -300,6 +363,7 @@
 				EAA74B411DAB45F20064B4B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
