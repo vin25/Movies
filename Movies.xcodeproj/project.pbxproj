@@ -7,27 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA1420401DAF4E8100FB5428 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203E1DAF4E8100FB5428 /* Alamofire.framework */; };
-		EA1420411DAF4E8100FB5428 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */; };
+		EA6E21981DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21971DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift */; };
+		EA6E219A1DB003E900B6B205 /* MovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21991DB003E900B6B205 /* MovieEntity.swift */; };
+		EA6E219D1DB0053D00B6B205 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E219C1DB0053D00B6B205 /* Constants.swift */; };
+		EA6E21A11DB00A8100B6B205 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21A01DB00A8100B6B205 /* MovieListViewController.swift */; };
+		EA6E21A31DB00A9300B6B205 /* MovieListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21A21DB00A9300B6B205 /* MovieListInteractor.swift */; };
+		EA6E21AA1DB033D700B6B205 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203E1DAF4E8100FB5428 /* Alamofire.framework */; };
+		EA6E21AB1DB033D700B6B205 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */; };
+		EA6E21AC1DB033D700B6B205 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6E21A81DB0316300B6B205 /* WebImage.framework */; };
+		EA6E21B01DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21AF1DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift */; };
+		EA6E21B21DB035F900B6B205 /* DiscoverMoviesWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21B11DB035F900B6B205 /* DiscoverMoviesWebservice.swift */; };
 		EAA74B311DAB45F20064B4B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */; };
 		EAA74B361DAB45F20064B4B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B341DAB45F20064B4B9 /* Main.storyboard */; };
 		EAA74B381DAB45F20064B4B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B371DAB45F20064B4B9 /* Assets.xcassets */; };
 		EAA74B3B1DAB45F20064B4B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B391DAB45F20064B4B9 /* LaunchScreen.storyboard */; };
-		EAA74B481DAD305D0064B4B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B471DAD305D0064B4B9 /* HomeViewController.swift */; };
 		EAA74B4C1DAD3F770064B4B9 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B4B1DAD3F770064B4B9 /* MovieListCell.swift */; };
+		EAE4D57E1DAFF7B600A8D7CF /* BaseWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4D57D1DAFF7B600A8D7CF /* BaseWebservice.swift */; };
+		EAE4D5801DAFF89300A8D7CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE4D57F1DAFF89300A8D7CF /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EA14203E1DAF4E8100FB5428 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		EA6E21971DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPopularMoviesWebservice.swift; sourceTree = "<group>"; };
+		EA6E21991DB003E900B6B205 /* MovieEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieEntity.swift; sourceTree = "<group>"; };
+		EA6E219C1DB0053D00B6B205 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EA6E21A01DB00A8100B6B205 /* MovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
+		EA6E21A21DB00A9300B6B205 /* MovieListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListInteractor.swift; sourceTree = "<group>"; };
+		EA6E21A61DB02CE700B6B205 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		EA6E21A81DB0316300B6B205 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
+		EA6E21AF1DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverHighestRatedMoviesWebservice.swift; sourceTree = "<group>"; };
+		EA6E21B11DB035F900B6B205 /* DiscoverMoviesWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMoviesWebservice.swift; sourceTree = "<group>"; };
 		EAA74B2D1DAB45F20064B4B9 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA74B351DAB45F20064B4B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAA74B371DAB45F20064B4B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAA74B3A1DAB45F20064B4B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAA74B3C1DAB45F20064B4B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAA74B471DAD305D0064B4B9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EAA74B4B1DAD3F770064B4B9 /* MovieListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
+		EAE4D57D1DAFF7B600A8D7CF /* BaseWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWebservice.swift; sourceTree = "<group>"; };
+		EAE4D57F1DAFF89300A8D7CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,8 +54,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA1420401DAF4E8100FB5428 /* Alamofire.framework in Frameworks */,
-				EA1420411DAF4E8100FB5428 /* SwiftyJSON.framework in Frameworks */,
+				EAE4D5801DAFF89300A8D7CF /* Foundation.framework in Frameworks */,
+				EA6E21AA1DB033D700B6B205 /* Alamofire.framework in Frameworks */,
+				EA6E21AB1DB033D700B6B205 /* SwiftyJSON.framework in Frameworks */,
+				EA6E21AC1DB033D700B6B205 /* WebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,10 +67,21 @@
 		EA14203D1DAF4E8000FB5428 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA6E21A81DB0316300B6B205 /* WebImage.framework */,
+				EA6E21A61DB02CE700B6B205 /* AlamofireImage.framework */,
+				EAE4D57F1DAFF89300A8D7CF /* Foundation.framework */,
 				EA14203E1DAF4E8100FB5428 /* Alamofire.framework */,
 				EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA6E219B1DB0053200B6B205 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EA6E219C1DB0053D00B6B205 /* Constants.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 		EAA74B241DAB45F20064B4B9 = {
@@ -74,7 +106,9 @@
 			children = (
 				EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */,
 				EAA74B451DAD304A0064B4B9 /* Scenes */,
+				EAE4D57C1DAFF6E400A8D7CF /* API handler */,
 				EAA74B341DAB45F20064B4B9 /* Main.storyboard */,
+				EA6E219B1DB0053200B6B205 /* General */,
 				EAA74B371DAB45F20064B4B9 /* Assets.xcassets */,
 				EAA74B391DAB45F20064B4B9 /* LaunchScreen.storyboard */,
 				EAA74B3C1DAB45F20064B4B9 /* Info.plist */,
@@ -93,10 +127,23 @@
 		EAA74B461DAD304A0064B4B9 /* Home page */ = {
 			isa = PBXGroup;
 			children = (
-				EAA74B471DAD305D0064B4B9 /* HomeViewController.swift */,
+				EA6E21A01DB00A8100B6B205 /* MovieListViewController.swift */,
+				EA6E21A21DB00A9300B6B205 /* MovieListInteractor.swift */,
+				EA6E21991DB003E900B6B205 /* MovieEntity.swift */,
 				EAA74B4B1DAD3F770064B4B9 /* MovieListCell.swift */,
 			);
 			path = "Home page";
+			sourceTree = "<group>";
+		};
+		EAE4D57C1DAFF6E400A8D7CF /* API handler */ = {
+			isa = PBXGroup;
+			children = (
+				EAE4D57D1DAFF7B600A8D7CF /* BaseWebservice.swift */,
+				EA6E21B11DB035F900B6B205 /* DiscoverMoviesWebservice.swift */,
+				EA6E21971DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift */,
+				EA6E21AF1DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift */,
+			);
+			path = "API handler";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +224,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
 			);
 			outputPaths = (
 			);
@@ -192,8 +240,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAA74B311DAB45F20064B4B9 /* AppDelegate.swift in Sources */,
+				EAE4D57E1DAFF7B600A8D7CF /* BaseWebservice.swift in Sources */,
+				EA6E21B21DB035F900B6B205 /* DiscoverMoviesWebservice.swift in Sources */,
 				EAA74B4C1DAD3F770064B4B9 /* MovieListCell.swift in Sources */,
-				EAA74B481DAD305D0064B4B9 /* HomeViewController.swift in Sources */,
+				EA6E219A1DB003E900B6B205 /* MovieEntity.swift in Sources */,
+				EA6E219D1DB0053D00B6B205 /* Constants.swift in Sources */,
+				EA6E21A11DB00A8100B6B205 /* MovieListViewController.swift in Sources */,
+				EA6E21A31DB00A9300B6B205 /* MovieListInteractor.swift in Sources */,
+				EA6E21B01DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift in Sources */,
+				EA6E21981DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
