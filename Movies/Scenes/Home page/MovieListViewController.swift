@@ -23,6 +23,9 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     var movieList = [MovieEntity]()
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
+    @IBOutlet weak var popularButton: UIButton!
+    @IBOutlet weak var topRatedButton: UIButton!
+    @IBOutlet weak var popularSelectedLine: UIView!
     
     // MARK: View Lifecycle
     
@@ -46,6 +49,15 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: Action events
+    
+    @IBAction func topRatedButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func popularButtonTapped(_ sender: AnyObject) {
+    }
+    
     
     // MARK: MovieListViewControllerProtocol
     
@@ -85,6 +97,9 @@ extension MovieListViewController: UICollectionViewDataSource {
             if let posterPath = movie.posterPath {
                 cell.posterImage.sd_setImage(with: URL(string:WebserviceURL.imageBaseURL + posterPath), placeholderImage: UIImage(named: "image001"))
             }
+            
+            cell.posterImage.layer.cornerRadius = 3.0
+            cell.posterImage.layer.masksToBounds = true
             
 
         }
