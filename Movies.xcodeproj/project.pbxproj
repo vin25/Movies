@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA6E21981DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21971DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift */; };
+		EA69B7EC1DB215BB000440E7 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA69B7EB1DB215BB000440E7 /* NVActivityIndicatorView.framework */; };
 		EA6E219A1DB003E900B6B205 /* MovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21991DB003E900B6B205 /* MovieEntity.swift */; };
 		EA6E219D1DB0053D00B6B205 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E219C1DB0053D00B6B205 /* Constants.swift */; };
 		EA6E21A11DB00A8100B6B205 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21A01DB00A8100B6B205 /* MovieListViewController.swift */; };
@@ -15,7 +15,6 @@
 		EA6E21AA1DB033D700B6B205 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203E1DAF4E8100FB5428 /* Alamofire.framework */; };
 		EA6E21AB1DB033D700B6B205 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */; };
 		EA6E21AC1DB033D700B6B205 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6E21A81DB0316300B6B205 /* WebImage.framework */; };
-		EA6E21B01DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21AF1DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift */; };
 		EA6E21B21DB035F900B6B205 /* DiscoverMoviesWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21B11DB035F900B6B205 /* DiscoverMoviesWebservice.swift */; };
 		EAA74B311DAB45F20064B4B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */; };
 		EAA74B361DAB45F20064B4B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA74B341DAB45F20064B4B9 /* Main.storyboard */; };
@@ -29,14 +28,13 @@
 /* Begin PBXFileReference section */
 		EA14203E1DAF4E8100FB5428 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		EA6E21971DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverPopularMoviesWebservice.swift; sourceTree = "<group>"; };
+		EA69B7EB1DB215BB000440E7 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		EA6E21991DB003E900B6B205 /* MovieEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieEntity.swift; sourceTree = "<group>"; };
 		EA6E219C1DB0053D00B6B205 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EA6E21A01DB00A8100B6B205 /* MovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		EA6E21A21DB00A9300B6B205 /* MovieListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListInteractor.swift; sourceTree = "<group>"; };
 		EA6E21A61DB02CE700B6B205 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		EA6E21A81DB0316300B6B205 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
-		EA6E21AF1DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverHighestRatedMoviesWebservice.swift; sourceTree = "<group>"; };
 		EA6E21B11DB035F900B6B205 /* DiscoverMoviesWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMoviesWebservice.swift; sourceTree = "<group>"; };
 		EAA74B2D1DAB45F20064B4B9 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA74B301DAB45F20064B4B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +56,7 @@
 				EA6E21AA1DB033D700B6B205 /* Alamofire.framework in Frameworks */,
 				EA6E21AB1DB033D700B6B205 /* SwiftyJSON.framework in Frameworks */,
 				EA6E21AC1DB033D700B6B205 /* WebImage.framework in Frameworks */,
+				EA69B7EC1DB215BB000440E7 /* NVActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +66,7 @@
 		EA14203D1DAF4E8000FB5428 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA69B7EB1DB215BB000440E7 /* NVActivityIndicatorView.framework */,
 				EA6E21A81DB0316300B6B205 /* WebImage.framework */,
 				EA6E21A61DB02CE700B6B205 /* AlamofireImage.framework */,
 				EAE4D57F1DAFF89300A8D7CF /* Foundation.framework */,
@@ -74,6 +74,13 @@
 				EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA69B7ED1DB223E7000440E7 /* Custom components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom components";
 			sourceTree = "<group>";
 		};
 		EA6E219B1DB0053200B6B205 /* General */ = {
@@ -109,6 +116,7 @@
 				EAE4D57C1DAFF6E400A8D7CF /* API handler */,
 				EAA74B341DAB45F20064B4B9 /* Main.storyboard */,
 				EA6E219B1DB0053200B6B205 /* General */,
+				EA69B7ED1DB223E7000440E7 /* Custom components */,
 				EAA74B371DAB45F20064B4B9 /* Assets.xcassets */,
 				EAA74B391DAB45F20064B4B9 /* LaunchScreen.storyboard */,
 				EAA74B3C1DAB45F20064B4B9 /* Info.plist */,
@@ -140,8 +148,6 @@
 			children = (
 				EAE4D57D1DAFF7B600A8D7CF /* BaseWebservice.swift */,
 				EA6E21B11DB035F900B6B205 /* DiscoverMoviesWebservice.swift */,
-				EA6E21971DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift */,
-				EA6E21AF1DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift */,
 			);
 			path = "API handler";
 			sourceTree = "<group>";
@@ -225,6 +231,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
 			);
 			outputPaths = (
 			);
@@ -247,8 +254,6 @@
 				EA6E219D1DB0053D00B6B205 /* Constants.swift in Sources */,
 				EA6E21A11DB00A8100B6B205 /* MovieListViewController.swift in Sources */,
 				EA6E21A31DB00A9300B6B205 /* MovieListInteractor.swift in Sources */,
-				EA6E21B01DB0352500B6B205 /* DiscoverHighestRatedMoviesWebservice.swift in Sources */,
-				EA6E21981DB0033500B6B205 /* DiscoverPopularMoviesWebservice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

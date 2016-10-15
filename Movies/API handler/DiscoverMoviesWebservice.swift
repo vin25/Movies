@@ -9,14 +9,9 @@
 import Foundation
 import SwiftyJSON
 
-enum SortType {
-    case Popularity
-    case Rating
-}
-
 protocol DiscoverMoviesCallback: class {
-    func discoverMoviesCallDidSucceed(response: [MovieEntity])
-    func discoverMoviesCallDidFail(response: HTTPURLResponse?, error:Error)
+    func discoverMoviesCallDidSucceed(response: [MovieEntity], sortType: SortType)
+    func discoverMoviesCallDidFail(response: HTTPURLResponse?, error:Error, sortType: SortType)
 }
 
 class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
@@ -94,12 +89,12 @@ class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
     
     func webserviceCallDidSucceed(json: JSON, response: HTTPURLResponse) {
         //prepare object and send to the interactor
-        self.discoverMoviescallback?.discoverMoviesCallDidSucceed(response: self.parseResponse(json: json))
+        self.discoverMoviescallback?.discoverMoviesCallDidSucceed(response: self.parseResponse(json: json), sortType: self.sortType)
     }
     
     func webserviceCallDidFail(response: HTTPURLResponse?, error:Error) {
         //prepare object and send to the interactor
-        self.discoverMoviescallback?.discoverMoviesCallDidFail(response: response, error: error)
+        self.discoverMoviescallback?.discoverMoviesCallDidFail(response: response, error: error, sortType: self.sortType)
     }
     
 }

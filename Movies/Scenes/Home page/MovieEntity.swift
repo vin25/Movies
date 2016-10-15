@@ -16,3 +16,8 @@ struct MovieEntity {
     var posterPath: String?
     var backdropPath: String?
 }
+
+enum SortType {
+    case Popularity
+    case Rating
+}

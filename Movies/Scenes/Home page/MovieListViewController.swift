@@ -8,11 +8,16 @@
 
 import UIKit
 import WebImage
+import NVActivityIndicatorView
 
 // MARK: Protocols
 
 protocol MovieListViewControllerProtocol: class {
-    func setData(data: [MovieEntity])
+    func reloadListWithContentOffset(point: CGPoint)
+    func startLoader()
+    func stopLoader()
+    func showMoviesList()
+    func hideMoviesList()
 }
 
 
@@ -20,12 +25,14 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     
     // MARK: Properties    
     var interactorDelegate: MovieListInteractorProtocol!
-    var movieList = [MovieEntity]()
+    var activityIndicator: NVActivityIndicatorView!
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var popularButton: UIButton!
     @IBOutlet weak var topRatedButton: UIButton!
     @IBOutlet weak var popularSelectedLine: UIView!
+    @IBOutlet weak var topRatedLine: UIView!
     
     // MARK: View Lifecycle
     
@@ -33,6 +40,7 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
         
         super.awakeFromNib()
         
+        //setup and connect the interactor and view controller
         let interactor = MovieListInteractor()
         interactor.viewControllerDelegate = self
         self.interactorDelegate = interactor
@@ -41,8 +49,19 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hide list view
+        self.movieCollectionView.alpha = 0.0
+        
+        //set popular as selected
+        setPopularButtonToSelectedState()
 
-        self.interactorDelegate.makeDiscoverPopularMoviesWebserviceRequest()
+        //show activity indicator
+        addActivityIndicatorView()
+        activityIndicator.startAnimating()
+        
+        //fetch data for popular movies
+        self.interactorDelegate.sortByPopularity()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,20 +72,75 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     // MARK: Action events
     
     @IBAction func topRatedButtonTapped(_ sender: UIButton) {
+        setTopButtonToSelectedState()
+        interactorDelegate.sortByRating()
+        interactorDelegate.setContentOffsetForPopularMovies(point: self.movieCollectionView.contentOffset)
     }
     
     @IBAction func popularButtonTapped(_ sender: AnyObject) {
+        setPopularButtonToSelectedState()
+        interactorDelegate.sortByPopularity()
+        interactorDelegate.setContentOffsetForTopRatedMovies(point: self.movieCollectionView.contentOffset)
+    }
+    
+    // MARK: UI methods
+    
+    func setTopButtonToSelectedState() {
+        topRatedButton.setTitleColor(Colors.lightYellowColor, for: .normal)
+        popularButton.setTitleColor(Colors.lightGrayColor, for: .normal)
+        popularSelectedLine.alpha = 0.0
+        topRatedLine.alpha = 1.0
+    }
+    
+    func setPopularButtonToSelectedState() {
+        popularButton.setTitleColor(Colors.lightYellowColor, for: .normal)
+        topRatedButton.setTitleColor(Colors.lightGrayColor, for: .normal)
+        popularSelectedLine.alpha = 1.0
+        topRatedLine.alpha = 0.0
+    }
+    
+    func addActivityIndicatorView() {
+        
+        //set dimensions and frame for the loader
+        let loaderDimension: CGFloat = 40
+        let frame: CGRect = CGRect(x: ((self.view.frame.size.width)/2) - (loaderDimension/2),
+                                   y: ((self.view.frame.size.height)/2) - (loaderDimension/2),
+                                   width: loaderDimension,
+                                   height: loaderDimension)
+
+        
+        //initialize and start the loader
+        activityIndicator = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.lineScale, color: Colors.lightGrayColor, padding: 0)
+        self.view.addSubview(activityIndicator)
     }
     
     
     // MARK: MovieListViewControllerProtocol
     
-    func setData(data: [MovieEntity]) {
-        self.movieList.append(contentsOf: data)
-        self.movieCollectionView.dataSource = self
+    func reloadListWithContentOffset(point: CGPoint) {
         self.movieCollectionView.reloadData()
+        self.movieCollectionView.setContentOffset(point, animated: false)
     }
     
+    func showMoviesList() {
+        UIView.animate(withDuration: 0.3) {
+            self.movieCollectionView.alpha = 1.0
+        }
+    }
+    
+    func hideMoviesList() {
+        UIView.animate(withDuration: 0.3) {
+            self.movieCollectionView.alpha = 0.0
+        }
+    }
+    
+    func startLoader() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopLoader() {
+        activityIndicator.stopAnimating()
+    }
 
     /*
     // MARK: - Navigation
@@ -85,27 +159,16 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
 extension MovieListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieList.count;
+        return interactorDelegate.getMoviesCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieListCellID", for: indexPath) as! MovieListCell
         
-        if let movie = movieList[indexPath.row] as MovieEntity? {
-            cell.nameLabel.text = movie.name
-            cell.posterImage.image = UIImage(named: "image001")
-            if let posterPath = movie.posterPath {
-                cell.posterImage.sd_setImage(with: URL(string:WebserviceURL.imageBaseURL + posterPath), placeholderImage: UIImage(named: "image001"))
-            }
-            
-            cell.posterImage.layer.cornerRadius = 3.0
-            cell.posterImage.layer.masksToBounds = true
-            
-
+        if let movie = interactorDelegate.getMovieElementForIndex(index: indexPath.row) {
+            cell.configureCell(movie: movie)
         }
-        
-        
-        
+
         return cell
     }
     
