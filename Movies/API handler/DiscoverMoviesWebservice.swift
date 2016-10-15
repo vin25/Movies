@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 protocol DiscoverMoviesCallback: class {
-    func discoverMoviesCallDidSucceed(response: [MovieEntity], sortType: SortType)
+    func discoverMoviesCallDidSucceed(response: DiscoverMoviesResponse, sortType: SortType)
     func discoverMoviesCallDidFail(response: HTTPURLResponse?, error:Error, sortType: SortType)
 }
 
@@ -25,9 +25,22 @@ class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
         self.sortType = type
     }
     
-    func parseResponse(json: JSON) -> [MovieEntity] {
+    func parseResponse(json: JSON) -> DiscoverMoviesResponse {
         
         var movieList: [MovieEntity] = []
+        var response: DiscoverMoviesResponse = DiscoverMoviesResponse()
+        
+        if let page = json["page"].int {
+            response.page = page
+        }
+        
+        if let totalResults = json["total_results"].int {
+            response.totalResults = totalResults
+        }
+        
+        if let totalPages = json["total_pages"].int {
+            response.totalPages = totalPages
+        }
         
         if let results = json["results"].array {
             
@@ -62,10 +75,11 @@ class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
                 movieList.append(movie)
             }
             
-            
         }
         
-        return movieList
+        response.movies = movieList
+        
+        return response
     }
     
     
@@ -89,6 +103,7 @@ class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
     
     func webserviceCallDidSucceed(json: JSON, response: HTTPURLResponse) {
         //prepare object and send to the interactor
+        print("JSON: \(json)")
         self.discoverMoviescallback?.discoverMoviesCallDidSucceed(response: self.parseResponse(json: json), sortType: self.sortType)
     }
     

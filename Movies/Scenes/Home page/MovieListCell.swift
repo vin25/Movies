@@ -17,7 +17,17 @@ class MovieListCell: UICollectionViewCell {
         
         self.nameLabel.text = movie.name
         if let posterPath = movie.posterPath {
-            self.posterImage.sd_setImage(with: URL(string:WebserviceURL.imageBaseURL + posterPath), placeholderImage: nil)
+            
+            self.posterImage.image = nil
+            
+            //cancel previous- it overlaps sometimes
+            self.posterImage.sd_cancelCurrentAnimationImagesLoad()
+            self.posterImage.sd_cancelCurrentImageLoad()
+
+            self.posterImage.sd_setImage(with: URL(string:WebserviceURL.imageBaseURL + posterPath), placeholderImage: #imageLiteral(resourceName: "placholder"))
+        }
+        else {
+             self.posterImage.image =  #imageLiteral(resourceName: "placholder")
         }
         
         self.posterImage.layer.cornerRadius = 3.0

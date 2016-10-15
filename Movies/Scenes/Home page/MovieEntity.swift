@@ -17,6 +17,13 @@ struct MovieEntity {
     var backdropPath: String?
 }
 
+struct DiscoverMoviesResponse {
+    var movies: [MovieEntity]?
+    var page: Int?
+    var totalResults: Int?
+    var totalPages: Int?
+}
+
 enum SortType {
     case Popularity
     case Rating

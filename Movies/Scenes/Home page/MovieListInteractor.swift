@@ -15,6 +15,8 @@ protocol MovieListInteractorProtocol {
     func sortByPopularity()
     func sortByRating()
     
+    func loadNextPage()
+    
     //get count of the list
     func getMoviesCount() -> Int
     
@@ -35,6 +37,16 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     var topRatedMovielsList = [MovieEntity]()
     var popularMoviesContentOffset = CGPoint(x: 0, y:0)
     var topRatedMoviesContentOffset = CGPoint(x: 0, y:0)
+    
+    // State tracking
+    var currentPageForPopularMovies = 0
+    var currentPageForTopRatedMovies = 0
+    var isLoading = false
+    var isRequestingNextPage = false
+    var lastLoadedIndexForPopularMovies = 0
+    var lastLoadedIndexForTopRatedMovies = 0
+    var maxPagesForPopularMovies = 1
+    var maxPagesForTopRatedMovies = 1
     
     // MARK: MovieListInteractorProtocol
     
@@ -57,6 +69,22 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
             //hide list and show loading
             viewControllerDelegate.hideMoviesList()
             viewControllerDelegate.startLoader()
+        }
+    }
+    
+    func loadNextPage() {
+        if isLoading {
+            print("isLoading")
+            return
+        }
+        
+        isRequestingNextPage = true
+        
+        if sortType == .Popularity {
+            makeDiscoverPopularMoviesWebserviceRequest()
+        }
+        else {
+            makeDiscoverHighestRatedMoviesWebserviceRequest()
         }
     }
     
@@ -98,32 +126,58 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     // MARK: Webservice request
     
     func makeDiscoverPopularMoviesWebserviceRequest() {
-        self.makeDiscoverPopularMoviesWebserviceRequestForPage(page: 1)
+        let pageToRequest = currentPageForPopularMovies+1
+        if pageToRequest <= maxPagesForPopularMovies {
+            self.makeDiscoverPopularMoviesWebserviceRequestForPage(page: pageToRequest)
+        }
+        else {
+            print("Maximum page limit reached")
+        }
     }
     
     func makeDiscoverHighestRatedMoviesWebserviceRequest() {
-        self.makeDiscoverHighestRateMoviesWebserviceRequestForPage(page: 1)
+        let pageToRequest = currentPageForTopRatedMovies+1
+        if pageToRequest <= maxPagesForTopRatedMovies {
+            self.makeDiscoverHighestRateMoviesWebserviceRequestForPage(page: pageToRequest)
+        }
+        else {
+            print("Maximum page limit reached")
+        }
+        
     }
     
     func makeDiscoverPopularMoviesWebserviceRequestForPage(page: Int) {
-        
+        isLoading = true
         let discoverPopularWS: DiscoverMoviesWebservice = DiscoverMoviesWebservice(type: .Popularity)
         discoverPopularWS.discoverMoviescallback = self
         discoverPopularWS.makeWebserviceRequest(parameters: "page=\(page)")
+        print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
     }
     
     func makeDiscoverHighestRateMoviesWebserviceRequestForPage(page: Int) {
-        
+        isLoading = true
         let discoverTopRatedWS: DiscoverMoviesWebservice = DiscoverMoviesWebservice(type: .Rating)
         discoverTopRatedWS.discoverMoviescallback = self
         discoverTopRatedWS.makeWebserviceRequest(parameters: "page=\(page)")
+        print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
     }
     
     
     // MARK: DiscoverMoviesCallback
     
-    func discoverMoviesCallDidSucceed(response: [MovieEntity], sortType: SortType) {
-        print("discoverMoviesCallDidSucceed response: \(response)")
+    func prepareListOfIndexes(from: Int, to: Int) -> [IndexPath] {
+        var indexPathsArray = [IndexPath]()
+        for index in from...to{
+            let indexPath = IndexPath(row: index, section: 0)
+            indexPathsArray.append(indexPath)
+        }
+        return indexPathsArray
+    }
+    
+    func discoverMoviesCallDidSucceed(response: DiscoverMoviesResponse, sortType: SortType) {
+        
+        let movies: [MovieEntity] = response.movies!
+        isLoading = false
         
         if sortType == .Popularity {
             if popularMoviesList.count == 0 {
@@ -131,8 +185,18 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
                 viewControllerDelegate.showMoviesList()
                 viewControllerDelegate.stopLoader()
             }
-            self.popularMoviesList.append(contentsOf: response)
-            viewControllerDelegate.reloadListWithContentOffset(point: popularMoviesContentOffset)
+            self.popularMoviesList.append(contentsOf: movies)
+            self.currentPageForPopularMovies = response.page!
+            if isRequestingNextPage {
+                viewControllerDelegate.updateListForIndexes(indexes: prepareListOfIndexes(from: lastLoadedIndexForPopularMovies+1, to: self.popularMoviesList.count-1))
+            }
+            else {
+                viewControllerDelegate.reloadListWithContentOffset(point: popularMoviesContentOffset)
+            }
+            lastLoadedIndexForPopularMovies = self.popularMoviesList.count-1
+            if let totalPages = response.totalPages {
+                maxPagesForPopularMovies = totalPages
+            }
         }
         else {
             if topRatedMovielsList.count == 0 {
@@ -140,15 +204,27 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
                 viewControllerDelegate.showMoviesList()
                 viewControllerDelegate.stopLoader()
             }
-            self.topRatedMovielsList.append(contentsOf: response)
-            viewControllerDelegate.reloadListWithContentOffset(point: topRatedMoviesContentOffset)
+            self.topRatedMovielsList.append(contentsOf: movies)
+            self.currentPageForTopRatedMovies = response.page!
+            if isRequestingNextPage {
+                viewControllerDelegate.updateListForIndexes(indexes: prepareListOfIndexes(from: lastLoadedIndexForTopRatedMovies+1, to: self.topRatedMovielsList.count-1))
+            }
+            else {
+                viewControllerDelegate.reloadListWithContentOffset(point: topRatedMoviesContentOffset)
+            }
+            lastLoadedIndexForTopRatedMovies = self.topRatedMovielsList.count-1
+            if let totalPages = response.totalPages {
+                maxPagesForTopRatedMovies = totalPages
+            }
         }
         
+        isRequestingNextPage = false
         
     }
     
     func discoverMoviesCallDidFail(response: HTTPURLResponse?, error:Error, sortType: SortType) {
-        print("discoverPopularMoviesCallDidFail response: \(response)")
+        
+        isLoading = false
         
         //stop loader
         if sortType == .Popularity {
@@ -163,6 +239,8 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
                 viewControllerDelegate.stopLoader()
             }
         }
+        
+        isRequestingNextPage = false
         
     }
 

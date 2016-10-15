@@ -46,7 +46,7 @@ class BaseWebservice {
     
     func makeGETWebserviceRequest(URL: String, parameters: String) {
         
-        let URLString = URL + "?api_key=" + Authentication.apiKey + "&" + parameters
+        let URLString = URL + "?api_key=" + Authentication.apiKey + "&" + parameters + "&language=en-US"
         
        Alamofire.request(URLString, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
 
@@ -61,7 +61,7 @@ class BaseWebservice {
         switch result {
             
             case .success(let value):
-                print("Json: \(JSON(value))")
+                //print("Json: \(JSON(value))")
                 self.requestSucceeded(json: JSON(value), response: response!)
 
             case .failure(let error):

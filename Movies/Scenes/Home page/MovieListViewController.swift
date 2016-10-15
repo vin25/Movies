@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 
 protocol MovieListViewControllerProtocol: class {
     func reloadListWithContentOffset(point: CGPoint)
+    func updateListForIndexes(indexes: [IndexPath])
     func startLoader()
     func stopLoader()
     func showMoviesList()
@@ -122,6 +123,15 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
         self.movieCollectionView.setContentOffset(point, animated: false)
     }
     
+    func updateListForIndexes(indexes: [IndexPath]) {
+        //DispatchQueue.main.async {
+            self.movieCollectionView.performBatchUpdates({ 
+                self.movieCollectionView.insertItems(at: indexes)
+                }, completion: nil)
+        //}
+        
+    }
+    
     func showMoviesList() {
         UIView.animate(withDuration: 0.3) {
             self.movieCollectionView.alpha = 1.0
@@ -171,5 +181,22 @@ extension MovieListViewController: UICollectionViewDataSource {
 
         return cell
     }
+
+}
+
+extension MovieListViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == movieCollectionView {
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+            {
+                interactorDelegate.loadNextPage()
+            }
+        }
+    }
+}
+
+extension MovieListViewController: UICollectionViewDelegate {
+    
+    
     
 }
