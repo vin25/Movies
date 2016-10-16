@@ -26,3 +26,12 @@ struct Colors {
     static let lightYellowColor = UIColor(red: 248.0/255.0, green: 234.0/255.0, blue: 154.0/255.0, alpha: 1.0)
 }
 
+extension String {
+    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        
+        return boundingBox.height
+    }
+}
+

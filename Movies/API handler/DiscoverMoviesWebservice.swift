@@ -48,7 +48,7 @@ class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
                 
                 var movie: MovieEntity = MovieEntity()
                 
-                if let name = results[i]["title"].string {
+                if let name = results[i]["original_title"].string {
                     movie.name = name
                 }
                 
@@ -103,7 +103,7 @@ class DiscoverMoviesWebservice: BaseWebservice, BaseWebserviceCallback {
     
     func webserviceCallDidSucceed(json: JSON, response: HTTPURLResponse) {
         //prepare object and send to the interactor
-        print("JSON: \(json)")
+        //print("JSON: \(json)")
         self.discoverMoviescallback?.discoverMoviesCallDidSucceed(response: self.parseResponse(json: json), sortType: self.sortType)
     }
     

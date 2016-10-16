@@ -17,12 +17,39 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Movies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-lV-xjI">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Ue8-9m-SbQ"/>
+                                    <constraint firstAttribute="width" constant="213" id="yBz-91-CJR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.91764705879999997" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="C3I-rv-N1H">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="IjR-8O-9bS"/>
+                                    <constraint firstAttribute="width" constant="50" id="lGp-AQ-lLZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="C3I-rv-N1H" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7E9-tr-Li1"/>
+                            <constraint firstItem="9Ks-lV-xjI" firstAttribute="top" secondItem="C3I-rv-N1H" secondAttribute="bottom" constant="15" id="8cF-Eo-4Su"/>
+                            <constraint firstItem="9Ks-lV-xjI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HhC-tQ-Lg2"/>
+                            <constraint firstItem="C3I-rv-N1H" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-35" id="ZpJ-Bv-739"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Triangle" width="145" height="145"/>
+    </resources>
 </document>

@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 
 protocol MovieListViewControllerProtocol: class {
     func reloadListWithContentOffset(point: CGPoint)
+    func reloadList()
     func updateListForIndexes(indexes: [IndexPath])
     func startLoader()
     func stopLoader()
@@ -34,6 +35,7 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     @IBOutlet weak var topRatedButton: UIButton!
     @IBOutlet weak var popularSelectedLine: UIView!
     @IBOutlet weak var topRatedLine: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: View Lifecycle
     
@@ -63,6 +65,13 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
         
         //fetch data for popular movies
         self.interactorDelegate.sortByPopularity()
+        
+        //customize search bar
+        customizeSearchBar()
+
+        //get keyboard events
+        registerForKeyboardNotifications()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,18 +82,25 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     // MARK: Action events
     
     @IBAction func topRatedButtonTapped(_ sender: UIButton) {
+        cancelSearch()
         setTopButtonToSelectedState()
         interactorDelegate.sortByRating()
         interactorDelegate.setContentOffsetForPopularMovies(point: self.movieCollectionView.contentOffset)
     }
     
     @IBAction func popularButtonTapped(_ sender: AnyObject) {
+        cancelSearch()
         setPopularButtonToSelectedState()
         interactorDelegate.sortByPopularity()
         interactorDelegate.setContentOffsetForTopRatedMovies(point: self.movieCollectionView.contentOffset)
     }
     
     // MARK: UI methods
+    
+    func customizeSearchBar() {
+        self.searchBar.keyboardAppearance = UIKeyboardAppearance.dark
+        self.searchBar.returnKeyType = UIReturnKeyType.done
+    }
     
     func setTopButtonToSelectedState() {
         topRatedButton.setTitleColor(Colors.lightYellowColor, for: .normal)
@@ -123,13 +139,14 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
         self.movieCollectionView.setContentOffset(point, animated: false)
     }
     
+    func reloadList() {
+        self.movieCollectionView.reloadData()
+    }
+    
     func updateListForIndexes(indexes: [IndexPath]) {
-        //DispatchQueue.main.async {
-            self.movieCollectionView.performBatchUpdates({ 
-                self.movieCollectionView.insertItems(at: indexes)
-                }, completion: nil)
-        //}
-        
+        self.movieCollectionView.performBatchUpdates({
+            self.movieCollectionView.insertItems(at: indexes)
+            }, completion: nil)
     }
     
     func showMoviesList() {
@@ -161,10 +178,65 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: Search related methods
+    
+    func cancelSearch() {
+        self.searchBar.text = nil
+        self.searchBar.endEditing(true)
+        interactorDelegate.cancelSearch()
+    }
+    
+    // MARK: Keyboard events
+    
+    func registerForKeyboardNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    func adjustForKeyboard(notification: Notification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == Notification.Name.UIKeyboardWillHide {
+            self.movieCollectionView.contentInset = UIEdgeInsets.zero
+        } else {
+            self.movieCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+    }
 
 }
 
-// MARK:- UICollectionViewDataSource
+// MARK: Search bar delegate
+
+extension MovieListViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        interactorDelegate.filterSearchResultsForText(searchText: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        cancelSearch()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        cancelSearch()
+    }
+    
+}
+
+// MARK: UICollectionViewDataSource
 
 extension MovieListViewController: UICollectionViewDataSource {
     
@@ -196,7 +268,22 @@ extension MovieListViewController: UIScrollViewDelegate {
 }
 
 extension MovieListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "detailViewControllerID") as! DetailViewController
+        if let movie = interactorDelegate.getMovieElementForIndex(index: indexPath.row) {
+            detailVC.movie = movie
+        }
+        self.present(detailVC, animated: true, completion: nil)
+    }
+
+}
+
+extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (self.view.frame.size.width - (7 * 4)) / 2.0 as CGFloat
+        let height = 268.0 as CGFloat
+        return CGSize(width: width, height: height)
+    }
     
 }

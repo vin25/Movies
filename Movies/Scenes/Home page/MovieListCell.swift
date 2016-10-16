@@ -30,7 +30,7 @@ class MovieListCell: UICollectionViewCell {
              self.posterImage.image =  #imageLiteral(resourceName: "placholder")
         }
         
-        self.posterImage.layer.cornerRadius = 3.0
+        self.posterImage.layer.cornerRadius = 1.0
         self.posterImage.layer.masksToBounds = true
         
     }

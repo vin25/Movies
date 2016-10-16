@@ -26,6 +26,10 @@ protocol MovieListInteractorProtocol {
     //set content offset
     func setContentOffsetForPopularMovies(point: CGPoint)
     func setContentOffsetForTopRatedMovies(point: CGPoint)
+    
+    //search
+    func filterSearchResultsForText(searchText: String)
+    func cancelSearch()
 }
 
 class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
@@ -35,6 +39,7 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     var sortType: SortType = .Popularity
     var popularMoviesList = [MovieEntity]()
     var topRatedMovielsList = [MovieEntity]()
+    var searchList = [MovieEntity]()
     var popularMoviesContentOffset = CGPoint(x: 0, y:0)
     var topRatedMoviesContentOffset = CGPoint(x: 0, y:0)
     
@@ -47,8 +52,44 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     var lastLoadedIndexForTopRatedMovies = 0
     var maxPagesForPopularMovies = 1
     var maxPagesForTopRatedMovies = 1
+    var isSearchActive = false
     
     // MARK: MovieListInteractorProtocol
+    
+    func cancelSearch() {
+        isSearchActive = false
+        searchList.removeAll()
+        viewControllerDelegate.reloadList()
+    }
+    
+    func filterSearchResultsForText(searchText: String) {
+        
+        if searchText.characters.count <= 0 {
+            isSearchActive = false
+            viewControllerDelegate.reloadList()
+            return
+        }
+        
+        isSearchActive = true
+        
+        if sortType == .Popularity {
+            filterList(list: popularMoviesList, searchText: searchText)
+        }
+        else {
+            filterList(list: topRatedMovielsList, searchText: searchText)
+        }
+        
+        viewControllerDelegate.reloadList()
+    }
+    
+    func filterList(list: [MovieEntity], searchText: String) {
+        searchList = list.filter{movie in
+            if let found = movie.name?.lowercased().contains(searchText.lowercased()) {
+                return found
+            }
+            return false
+        }
+    }
     
     func sortByPopularity() {
         sortType = .Popularity
@@ -74,7 +115,11 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     
     func loadNextPage() {
         if isLoading {
-            print("isLoading")
+            //print("isLoading")
+            return
+        }
+        
+        if isSearchActive {
             return
         }
         
@@ -89,29 +134,41 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     }
     
     func getMoviesCount() -> Int {
-        if sortType == .Popularity {
-            return popularMoviesList.count
+        
+        if isSearchActive {
+            return searchList.count
         }
         else {
-            return topRatedMovielsList.count
-        }
+            if sortType == .Popularity {
+                return popularMoviesList.count
+            }
+            else {
+                return topRatedMovielsList.count
+            }
+        } 
     }
     
     func getMovieElementForIndex(index: Int) -> MovieEntity? {
         
-        if sortType == .Popularity {
-            if let movie = popularMoviesList[index] as MovieEntity? {
+        if isSearchActive {
+            if let movie = searchList[index] as MovieEntity? {
                 return movie
             }
         }
-        else {
-            if let movie = topRatedMovielsList[index] as MovieEntity? {
-                return movie
+        else{
+            if sortType == .Popularity {
+                if let movie = popularMoviesList[index] as MovieEntity? {
+                    return movie
+                }
+            }
+            else {
+                if let movie = topRatedMovielsList[index] as MovieEntity? {
+                    return movie
+                }
             }
         }
         
         return nil
-        
     }
     
     func setContentOffsetForPopularMovies(point: CGPoint) {
@@ -151,7 +208,7 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
         let discoverPopularWS: DiscoverMoviesWebservice = DiscoverMoviesWebservice(type: .Popularity)
         discoverPopularWS.discoverMoviescallback = self
         discoverPopularWS.makeWebserviceRequest(parameters: "page=\(page)")
-        print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
+        //print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
     }
     
     func makeDiscoverHighestRateMoviesWebserviceRequestForPage(page: Int) {
@@ -159,7 +216,7 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
         let discoverTopRatedWS: DiscoverMoviesWebservice = DiscoverMoviesWebservice(type: .Rating)
         discoverTopRatedWS.discoverMoviescallback = self
         discoverTopRatedWS.makeWebserviceRequest(parameters: "page=\(page)")
-        print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
+        //print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
     }
     
     

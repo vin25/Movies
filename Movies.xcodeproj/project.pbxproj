@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA66EA5A1DB3AC610067E71A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66EA591DB3AC610067E71A /* DetailViewController.swift */; };
 		EA69B7EC1DB215BB000440E7 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA69B7EB1DB215BB000440E7 /* NVActivityIndicatorView.framework */; };
 		EA6E219A1DB003E900B6B205 /* MovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E21991DB003E900B6B205 /* MovieEntity.swift */; };
 		EA6E219D1DB0053D00B6B205 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6E219C1DB0053D00B6B205 /* Constants.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		EA14203E1DAF4E8100FB5428 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		EA66EA591DB3AC610067E71A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EA69B7EB1DB215BB000440E7 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		EA6E21991DB003E900B6B205 /* MovieEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieEntity.swift; sourceTree = "<group>"; };
 		EA6E219C1DB0053D00B6B205 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 				EA14203F1DAF4E8100FB5428 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA66EA581DB3AC420067E71A /* Detail page */ = {
+			isa = PBXGroup;
+			children = (
+				EA66EA591DB3AC610067E71A /* DetailViewController.swift */,
+			);
+			path = "Detail page";
 			sourceTree = "<group>";
 		};
 		EA69B7ED1DB223E7000440E7 /* Custom components */ = {
@@ -128,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EAA74B461DAD304A0064B4B9 /* Home page */,
+				EA66EA581DB3AC420067E71A /* Detail page */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -246,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA66EA5A1DB3AC610067E71A /* DetailViewController.swift in Sources */,
 				EAA74B311DAB45F20064B4B9 /* AppDelegate.swift in Sources */,
 				EAE4D57E1DAFF7B600A8D7CF /* BaseWebservice.swift in Sources */,
 				EA6E21B21DB035F900B6B205 /* DiscoverMoviesWebservice.swift in Sources */,
