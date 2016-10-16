@@ -141,6 +141,7 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     
     func reloadList() {
         self.movieCollectionView.reloadData()
+        self.movieCollectionView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     func updateListForIndexes(indexes: [IndexPath]) {
@@ -168,16 +169,6 @@ class MovieListViewController: UIViewController, MovieListViewControllerProtocol
     func stopLoader() {
         activityIndicator.stopAnimating()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: Search related methods
     

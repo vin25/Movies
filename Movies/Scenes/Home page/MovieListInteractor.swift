@@ -172,11 +172,15 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
     }
     
     func setContentOffsetForPopularMovies(point: CGPoint) {
-        popularMoviesContentOffset = CGPoint (x: point.x, y: point.y)
+        if !isSearchActive {
+            popularMoviesContentOffset = CGPoint (x: point.x, y: point.y)
+        }
     }
     
     func setContentOffsetForTopRatedMovies(point: CGPoint) {
-        topRatedMoviesContentOffset = CGPoint (x: point.x, y: point.y)
+        if !isSearchActive {
+            topRatedMoviesContentOffset = CGPoint (x: point.x, y: point.y)
+        }
     }
     
     
