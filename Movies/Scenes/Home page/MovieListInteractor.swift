@@ -212,7 +212,6 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
         let discoverPopularWS: DiscoverMoviesWebservice = DiscoverMoviesWebservice(type: .Popularity)
         discoverPopularWS.discoverMoviescallback = self
         discoverPopularWS.makeWebserviceRequest(parameters: "page=\(page)")
-        //print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
     }
     
     func makeDiscoverHighestRateMoviesWebserviceRequestForPage(page: Int) {
@@ -220,7 +219,6 @@ class MovieListInteractor: MovieListInteractorProtocol, DiscoverMoviesCallback {
         let discoverTopRatedWS: DiscoverMoviesWebservice = DiscoverMoviesWebservice(type: .Rating)
         discoverTopRatedWS.discoverMoviescallback = self
         discoverTopRatedWS.makeWebserviceRequest(parameters: "page=\(page)")
-        //print("makeDiscoverPopularMoviesWebserviceRequestForPage page=\(page)")
     }
     
     
